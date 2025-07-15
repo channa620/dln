@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DLN Sarees - Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background-color: #fffdfc;
+      color: #333;
+      animation: fadeInBody 1s ease-in-out;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header {
+      background-color: #a83279;
+      color: white;
+      height: 130px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      height: 120px;
+      width: 120px;
+      animation: fadeInLogo 1.2s ease-in-out;
+    }
+
+    @keyframes fadeInLogo {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      animation: slideInLink 0.8s ease-in-out forwards;
+      opacity: 0;
+    }
+
+    nav a:nth-child(1) { animation-delay: 0.2s; }
+    nav a:nth-child(2) { animation-delay: 0.4s; }
+    nav a:nth-child(3) { animation-delay: 0.6s; }
+    nav a:nth-child(4) { animation-delay: 0.8s; }
+
+    @keyframes slideInLink {
+      from {
+        transform: translateY(-10px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    nav a::after {
+      content: '';
+      display: block;
+      height: 2px;
+      width: 0%;
+      background-color: white;
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+  padding: 4rem 2rem;
+  text-align: center;
+  background:
+    url('images/raw.avif') center/cover no-repeat,
+    linear-gradient(135deg, #ffe3f1, #d5f5f6);
+  background-blend-mode: overlay;
+  background-size: cover;
+  animation: gradientFlow 12s ease infinite, slideInHero 1.2s ease-out;
+  color: #333;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+    @keyframes slideInHero {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-style: oblique;
+      color: rgb(147, 22, 149);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #444;
+    }
+
+    .collection {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.collection h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #a83279;
+}
+
+.collection-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+}
+
+.collection-grid img {
+  width: 200px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.collection-grid img:hover {
+  transform: scale(1.05);
+}
+
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999; /* must be higher than header's z-index */
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+
+.modal-content {
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 30px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+    @keyframes fadeInImage {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    footer {
+      background-color: #a83279;
+      color: white;
+      text-align: left;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      animation: fadeInFooter 1.2s ease-in;
+    }
+
+    @keyframes fadeInFooter {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 1rem;
+    }
+
+    .footer-column h4 {
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
+      color: #ffe3f1;
+    }
+
+    .footer-column p, .footer-column a {
+      color: white;
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .footer-column a:hover {
+      color: #ffe3f1;
+    }
+
+    .social-icons a {
+      margin-right: 10px;
+      font-size: 1.2rem;
+      color: white;
+    }
+
+    .social-icons a:hover {
+      color: #ffe3f1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+  <img src="images/logo.png" alt="DLN Sarees" class="logo">
+  <nav>
+    <a href="index.html" class="nav-item">
+      <img src="images/home.png" alt="Home Icon" class="nav-icon">
+      <span>Home</span>
+    </a>
+    <a href="sarees.html" class="nav-item">
+      <img src="images/saree.png" alt="Saree Icon" class="nav-icon">
+      <span>Sarees</span>
+    </a>
+    <a href="about.html" class="nav-item">
+      <img src="images/about.png" alt="About Icon" class="nav-icon">
+      <span>About Us</span>
+    </a>
+    <a href="contact.html" class="nav-item">
+      <img src="images/contact.png" alt="Contact Icon" class="nav-icon">
+      <span>Contact</span>
+    </a>
+  </nav>
+</header>
+
+
+<section class="about-section">
+  <style>
+    /* About Section */
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 80px 50px;
+      background: linear-gradient(to right, #fff0f5, #ffe6e6);
+      color: #333;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+      padding: 20px 40px;
+    }
+
+    .about-text h2 {
+      font-size: 3rem;
+      color: #b43757;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #d6336c;
+    }
+
+    .about-gallery {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .about-gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .about-gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 768px) {
+      .about-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 20px;
+      }
+
+      .about-text h2 {
+        font-size: 2.2rem;
+      }
+
+      .about-text p {
+        font-size: 1rem;
+      }
+
+      .about-gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* Vision & Mission Section */
+    .vision-mission-section {
+      background: url('images/fabric.webp') no-repeat center center / cover;
+      padding: 100px 40px;
+      text-align: center;
+      position: relative;
+      color: white;
+    }
+
+    .vision-mission-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .vision-mission-section h2 {
+      font-size: 2.8rem;
+      margin-bottom: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vision-mission-section h2::after {
+      content: '';
+      width: 80px;
+      height: 4px;
+      background: #fff;
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .vm-container {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vm-box {
+      background: rgba(255, 254, 254, 0.511);
+      backdrop-filter: blur(8px);
+      padding: 40px;
+      border-radius: 20px;
+      flex: 1 1 400px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.404);
+    }
+
+    .vm-box h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .vm-box p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #fdf8fa;
+    }
+
+    .vm-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+      color: #faf6f8;
+    }
+  </style>
+
+  <!-- Text Content -->
+  <div class="about-text">
+    <h2>About Us</h2>
+    <p>Welcome to <span class="highlight">DLN Silks & Sarees</span>, where tradition meets elegance. We are a passionate team of artisans and curators who bring the finest collection of sarees from across India, tailored for every occasion – from weddings to everyday wear.</p>
+    <p>Founded in 2015, our boutique has grown with a focus on <span class="highlight">quality, craftsmanship, and customer satisfaction</span>. Every saree tells a story of heritage and grace.</p>
+    <p>Whether you're looking for classic silk, trendy chiffon, or bold designer wear – we have something for everyone. Thank you for choosing us as your go-to ethnic fashion destination!</p>
+  </div>
+
+  <!-- Image Gallery -->
+  <div class="about-gallery">
+    <img src="images/about1.jpg" alt="Saree Display 1">
+    <img src="images/about2.jpg" alt="Saree Display 2">
+    <img src="images/about3.jpg" alt="Saree Display 3">
+    <img src="images/about4.jpg" alt="Saree Display 4">
+  </div>
+</section>
+
+<!-- Vision & Mission Section -->
+<section class="vision-mission-section">
+  <h2>Our Vision & Mission</h2>
+  <div class="vm-container">
+
+    <div class="vm-box">
+      <div class="vm-icon">🌸</div>
+      <h3>Our Vision</h3>
+      <p>To be the most loved and trusted destination for traditional Indian attire, reviving heritage textiles and empowering artisans while spreading the elegance of sarees globally.</p>
+    </div>
+
+    <div class="vm-box">
+      <div class="vm-icon">🎯</div>
+      <h3>Our Mission</h3>
+      <p>We aim to curate and deliver premium quality sarees that blend tradition with modern aesthetics, provide unmatched customer service, and celebrate the diversity of Indian culture through fashion.</p>
+    </div>
+
+  </div>
+</section>
+
+
+
+  
+ <footer>
+  <div class="footer-column">
+    <h4>✨ DLN Sarees</h4>
+    <p>📍 Dodballapur - 561203<br>Bengaluru, Karnataka, India</p>
+    <p>🕙 Mon - Sat | 10:00 AM - 8:00 PM</p>
+  </div>
+
+ <div class="footer-column">
+  <h4>📞 Contact Us</h4>
+  <p><a href="https://wa.me/918431732830" target="_blank">💬 WhatsApp Chat</a></p>
+  <p>
+    <a href="mailto:channakeshava620@gmail.com?subject=Enquiry%20from%20DLN%20Sarees%20Website&body=Hello%20DLN%20Sarees%2C%0AI%20would%20like%20to%20know%20more%20about%20your%20collection.">
+      📧 channakeshava620@gmail.com
+    </a>
+  </p>
+</div>
+
+
+  <div class="footer-column">
+    <h4>🔗 Quick Links</h4>
+    <a href="index.html">Home</a>
+    <a href="sarees.html">Sarees</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div style="width: 100%; text-align: center; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.2); margin-top: 1rem;">
+    <p>&copy; 2025 DLN Sarees. All Rights Reserved.</p>
+  </div>
+ 
+
+</footer>
+
+</body>
+<script>
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+  const closeBtn = document.querySelector(".close");
+
+  document.querySelectorAll(".clickable-img").forEach(img => {
+    img.addEventListener("click", () => {
+      modal.style.display = "flex";
+      modalImg.src = img.src;
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+</script>
+<script>
+  const header = document.querySelector("header");
+
+document.querySelectorAll(".clickable-img").forEach(img => {
+  img.addEventListener("click", () => {
+    modal.style.display = "flex";
+    modalImg.src = img.src;
+    if (header) header.style.display = "none"; // hide header
+  });
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+  if (header) header.style.display = "flex"; // show header back
+});
+
+window.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    modal.style.display = "none";
+    if (header) header.style.display = "flex"; // show header back
+  }
+});
+
+</script>
+
+</html>
+
